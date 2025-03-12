@@ -1,271 +1,265 @@
-// Nguyen Hoang Phuc
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Cá Nhân</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <title>Nguyễn Hoàng Phúc - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f7f7f7;
-    color: #333;
-    line-height: 1.6;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f0f2f5;
+            color: #2c3e50;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
 
-.container {
-    width: 80%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-header {
-    background: linear-gradient(90deg, #6a11cb, #2575fc);
-    color: white;
-    padding: 15px 0;
-    text-align: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    transition: all 0.3s ease;
-}
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2ecc71, #3498db);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
 
-header h1 {
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 5px;
-}
+        header.scrolled {
+            padding: 10px 0;
+            background: linear-gradient(135deg, #27ae60, #2980b9);
+        }
 
-header.scrolled {
-    padding: 10px 0;
-    font-size: 24px;
-}
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-nav {
-    margin-top: 5px;
-}
+        header h1 {
+            font-size: 28px;
+            color: white;
+            font-weight: 700;
+        }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
 
-nav ul li {
-    margin: 0 5px;
-}
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
 
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 14px;
-    padding: 5px 10px;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
+        nav ul li a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
 
-nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.4);
-}
+        /* Profile Section */
+        #profile {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 0 50px;
+            background: linear-gradient(to bottom right, rgba(255,255,255,0.9), rgba(240,242,245,0.9));
+        }
 
-#profile {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 120px 0 40px; /* Adjust padding to make space for the fixed header */
-    flex-wrap: wrap;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    background-color: white;
-    margin-top: 60px; /* Adjust margin to make space for the fixed header */
-}
+        .profile-card {
+            display: flex;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            animation: slideUp 1s ease;
+        }
 
-.profile-image {
-    flex: 1;
-    text-align: center;
-}
+        .profile-image {
+            position: relative;
+            padding: 40px;
+            background: linear-gradient(135deg, #2ecc71, #3498db);
+        }
 
-.profile-image img {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
+        .profile-image img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 8px solid white;
+            transition: all 0.3s ease;
+        }
 
-.profile-details {
-    flex: 2;
-    margin-left: 30px;
-}
+        .profile-image img:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
 
-.profile-details h2 {
-    font-size: 32px;
-    margin-bottom: 10px;
-    color: #333;
-}
+        .profile-details {
+            padding: 40px;
+            flex: 2;
+        }
 
-.profile-details .role {
-    font-size: 18px;
-    color: #777;
-    margin-bottom: 20px;
-}
+        .profile-details h2 {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
 
-.profile-details p {
-    font-size: 18px;
-    margin: 10px 0;
-}
+        .profile-details .role {
+            font-size: 20px;
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
 
-.profile-details .description {
-    font-size: 16px;
-    color: #555;
-    margin-top: 20px;
-    font-style: italic;
-}
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
 
-#contact {
-    padding: 40px 0;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    margin-top: 20px;
-    text-align: center;
-    animation: fadeIn 2s ease-in;
-}
+        .info-item {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 10px;
+        }
 
-#contact h2 {
-    margin-bottom: 20px;
-    font-size: 28px;
-    color: #333;
-}
+        .info-item strong {
+            color: #3498db;
+        }
 
-#contact p {
-    font-size: 18px;
-    color: #333;
-    margin-top: 20px;
-}
+        .description {
+            font-style: italic;
+            color: #636e72;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+        /* Contact Section */
+        #contact {
+            padding: 80px 0;
+            background: white;
+            margin: 20px 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
 
-footer {
-    background-color: #333;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-}
+        #contact h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: #2c3e50;
+        }
 
-footer p {
-    font-size: 14px;
-}
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
 
-/* Media Queries for responsive design */
-@media (max-width: 768px) {
-    header {
-        padding: 10px 0;
-    }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
 
-    nav ul {
-        flex-direction: column;
-        gap: 5px;
-    }
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
 
-    #profile {
-        flex-direction: column;
-        text-align: center;
-        padding: 100px 20px 20px; /* Adjust padding to make space for the fixed header */
-        background: linear-gradient(to bottom, #6a11cb, #2575fc);
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        margin-top: 80px; /* Adjust margin to make space for the fixed header */
-    }
+        .contact-item i {
+            font-size: 24px;
+            color: #3498db;
+        }
 
-    .profile-details {
-        margin-left: 0;
-        margin-top: 20px;
-        color: white;
-    }
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
 
-    .profile-image img {
-        width: 120px;
-        height: 120px;
-        border: 5px solid white;
-    }
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    .profile-details h2 {
-        font-size: 26px;
-    }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .profile-card {
+                flex-direction: column;
+                margin: 20px;
+            }
 
-    .profile-details .role {
-        font-size: 16px;
-        color: #ddd;
-    }
+            .profile-image {
+                padding: 30px;
+            }
 
-    .profile-details p {
-        font-size: 16px;
-    }
+            .profile-image img {
+                width: 150px;
+                height: 150px;
+            }
 
-    .profile-details .description {
-        font-size: 14px;
-        color: #eee;
-    }
-}
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
 
-/* Classes for fade-in effect */
-.fade-in {
-    opacity: 0;
-    transition: opacity 2s ease-in;
-}
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 0;
+            }
 
-.appear {
-    opacity: 1;
-}
-
-/* Bounce animation for buttons */
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-30px);
-    }
-    60% {
-        transform: translateY(-15px);
-    }
-}
-
-button.animated.bounce {
-    animation: bounce 1s;
-}
-
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1>Thông tin cá nhân</h1>
+        <div class="container header-content">
+            <h1>Nguyễn Hoàng Phúc</h1>
             <nav>
                 <ul>
-                    <li><a href="#profile">Hồ sơ</a></li>
-                    <li><a href="#contact">Liên hệ</a></li>
+                    <li><a href="#profile">Hồ Sơ</a></li>
+                    <li><a href="#contact">Liên Hệ</a></li>
                 </ul>
             </nav>
         </div>
@@ -273,94 +267,63 @@ button.animated.bounce {
 
     <section id="profile">
         <div class="container">
-            <div class="profile-image">
-                <img src="../images/avatar.png" alt="Avatar">
-            </div>
-            <div class="profile-details">
-                <h2>Nguyễn Hoàng Phúc</h2>
-                <p class="role">Sinh viên Hutech</p>
-                <p class="role">Ngành Công Nghệ Thông Tin</p>
-                <p><strong>MSSV:</strong> 2180607892</p>
-                <p><strong>Năm Sinh:</strong> 28/09/2003</p>
-                <p><strong>Địa Chỉ:</strong> Thủ Đức</p>
-                <p class="description">Chào mừng bạn đến với trang web cá nhân của tôi. Tôi là một sinh viên đam mê công nghệ và phát triển website.</p>
+            <div class="profile-card">
+                <div class="profile-image">
+                    <img src="../images/avatar.png" alt="Nguyen Hoang Phuc">
+                </div>
+                <div class="profile-details">
+                    <h2>Nguyễn Hoàng Phúc</h2>
+                    <p class="role">Sinh viên HUTECH - Công Nghệ Thông Tin</p>
+                    <div class="info-grid">
+                        <div class="info-item"><strong>MSSV:</strong> 2180607892</div>
+                        <div class="info-item"><strong>Năm Sinh:</strong> 28/09/2003</div>
+                        <div class="info-item"><strong>Địa Chỉ:</strong> Thủ Đức</div>
+                    </div>
+                    <p class="description">
+                        "Tôi là một sinh viên đam mê công nghệ, chuyên tâm học hỏi và phát triển các kỹ năng trong lĩnh vực phát triển website và lập trình."
+                    </p>
+                </div>
             </div>
         </div>
     </section>
-  
+
     <section id="contact">
         <div class="container">
-            <h2>Liên hệ</h2>
-            <p><strong>Số điện thoại:</strong> 0868435107</p>
-            <p><strong>Email:</strong> phuchoang280903@gmail.com</p>
+            <h2>Liên Hệ Với Tôi</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <p><strong>SĐT:</strong> 0868435107</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p><strong>Email:</strong> phuchoang280903@gmail.com</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; Nguyễn Hoàng Phúc. Tất cả quyền lợi được bảo lưu.</p>
+            <p>&copy; 2025 Nguyễn Hoàng Phúc. All rights reserved.</p>
         </div>
     </footer>
-<script>document.addEventListener('DOMContentLoaded', function() {
-    // Hiệu ứng di chuyển mượt cho các anchor link
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        }); 
-    });
 
-    // Hiệu ứng hover cho ảnh đại diện
-    const profileImage = document.querySelector('.profile-image img');
-    profileImage.addEventListener('mouseover', function() {
-        this.style.transform = 'scale(1.2)';
-        this.style.transition = 'transform 0.3s ease-in-out';
-    });
-    profileImage.addEventListener('mouseout', function() {
-        this.style.transform = 'scale(1)';
-        this.style.transition = 'transform 0.3s ease-in-out';
-    });
-
-    // Hiệu ứng thu gọn menu khi cuộn trang
-    const header = document.querySelector('header');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-
-    // Hiệu ứng fade-in khi cuộn trang
-    const fadeInElements = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('appear');
-                observer.unobserve(entry.target);
-            }
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
         });
-    }, {
-        threshold: 0.1
-    });
 
-    fadeInElements.forEach(element => {
-        observer.observe(element);
-    });
-
-    // Hiệu ứng bounce cho các nút
-    const buttons = document.querySelectorAll('button');
-    buttons.forEach(button => {
-        button.addEventListener('mouseover', function() {
-            this.classList.add('animated', 'bounce');
+        // Image hover effect
+        const profileImg = document.querySelector('.profile-image img');
+        profileImg.addEventListener('mouseover', () => {
+            profileImg.style.transform = 'scale(1.1) rotate(5deg)';
         });
-        button.addEventListener('mouseout', function() {
-            this.classList.remove('animated', 'bounce');
+        profileImg.addEventListener('mouseout', () => {
+            profileImg.style.transform = 'scale(1) rotate(0)';
         });
-    });
-});
-</script>
+    </script>
 </body>
 </html>
