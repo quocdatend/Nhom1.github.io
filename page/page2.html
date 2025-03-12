@@ -1,1 +1,543 @@
-// Phung Duy Dat
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phùng Duy Đạt | HUTECH</title>
+    <style>
+        :root {
+            --primary-bg: #141c2c;
+            --text-color: #ffffff;
+            --accent-color: #4caf7f;
+            --nav-color: #858585;
+            --gradient-start: #00c6fb;
+            --gradient-end: #ff56ab;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            background-color: var(--accent-color);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .device-toggle {
+            display: flex;
+            gap: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .device-toggle button {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        .device-toggle button.active {
+            background-color: #2a935c;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .header-actions button {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .get-button {
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        /* Navigation Styles */
+        .nav {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--nav-color);
+            font-size: 14px;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-color);
+        }
+
+        /* Profile Section Styles */
+        .profile-section {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto;
+            overflow: hidden;
+            border: 4px solid rgba(76, 175, 127, 0.2);
+            background-color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            font-size: 48px;
+            font-weight: 600;
+            margin: 20px 0 10px;
+        }
+
+        .profile-title {
+            color: var(--accent-color);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        /* Student Info Styles */
+        .info-section {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .info-item {
+            margin-bottom: 15px;
+            display: flex;
+        }
+
+        .info-label {
+            font-weight: 500;
+            color: var(--accent-color);
+            width: 120px;
+            flex-shrink: 0;
+        }
+
+        .info-value {
+            color: var(--text-color);
+        }
+
+        /* Gradient Border */
+        .gradient-border {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
+        }
+
+        .gradient-border-left {
+            left: 0;
+            right: auto;
+        }
+
+        /* University Logo */
+        .university-logo {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px auto;
+        }
+
+        .university-logo span {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        /* Courses Section Styles */
+        .courses-section {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: left;
+            display: none; /* Hidden by default */
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .course-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            background-color: rgba(255, 255, 255, 0.03);
+            padding: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .course-item:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+            transform: translateX(5px);
+        }
+
+        .course-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .course-info {
+            flex: 1;
+        }
+
+        .course-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .course-description {
+            font-size: 14px;
+            color: var(--nav-color);
+        }
+
+        /* Section display styles */
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Gradient borders -->
+    <div class="gradient-border gradient-border-right"></div>
+    <div class="gradient-border gradient-border-left"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <div class="logo-icon">H</div>
+                <span>HUTECH</span>
+                <span style="margin-left: 10px; opacity: 0.6; font-weight: normal;">|</span>
+                <span style="margin-left: 10px; opacity: 0.6; font-weight: normal;">Sinh viên</span>
+            </div>
+            
+            <div class="header-actions">
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                </button>
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                    </svg>
+                </button>
+                <button class="get-button">CV</button>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav">
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link active" data-section="profile">Trang chủ</a></li>
+                <li><a href="#" class="nav-link" data-section="courses">Học tập</a></li>
+                <li><a href="#" class="nav-link" data-section="projects">Dự án</a></li>
+                <li><a href="#" class="nav-link" data-section="skills">Kỹ năng</a></li>
+                <li><a href="#" class="nav-link" data-section="about">Giới thiệu</a></li>
+                <li><a href="#" class="nav-link" data-section="contact">Liên hệ</a></li>
+            </ul>
+        </nav>
+
+        <!-- Profile Section -->
+        <section id="profile-section" class="content-section active">
+            <div class="profile-section">
+                <div class="profile-image">
+                    <img src="../images/avatarPhungDuyDat.jpg" alt="Phùng Duy Đạt">
+                </div>
+                <h1 class="profile-name">Phùng Duy Đạt</h1>
+                <p class="profile-title">Sinh viên HUTECH</p>
+                
+                <!-- Student Information -->
+                <div class="info-section">
+                    <div class="info-item">
+                        <div class="info-label">Ngày sinh:</div>
+                        <div class="info-value">16/10/xxxx</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Lớp:</div>
+                        <div class="info-value">21DTHD5</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Số điện thoại:</div>
+                        <div class="info-value">032xxxxxxx</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Địa chỉ:</div>
+                        <div class="info-value">Thủ Đức City</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Trường:</div>
+                        <div class="info-value">Đại học HUTECH</div>
+                    </div>
+                </div>
+                
+                <!-- University Logo -->
+                <div class="university-logo">
+                    <span>HUTECH</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses Section -->
+        <section id="courses-section" class="content-section">
+            <div class="profile-section">
+                <h2 class="section-title">Các môn học đã học</h2>
+                
+                <div class="courses-section" style="display: block;">
+                    <div class="course-item">
+                        <div class="course-icon">OOP</div>
+                        <div class="course-info">
+                            <div class="course-name">Lập trình hướng đối tượng (OOP)</div>
+                            <div class="course-description">Học về các nguyên lý cơ bản của lập trình hướng đối tượng như tính đóng gói, kế thừa, đa hình và trừu tượng hóa.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="course-item">
+                        <div class="course-icon">C</div>
+                        <div class="course-info">
+                            <div class="course-name">Ngôn ngữ lập trình C</div>
+                            <div class="course-description">Học về cấu trúc dữ liệu, cấu trúc điều khiển và lập trình thủ tục với ngôn ngữ C.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="course-item">
+                        <div class="course-icon">C++</div>
+                        <div class="course-info">
+                            <div class="course-name">Ngôn ngữ lập trình C++</div>
+                            <div class="course-description">Học về STL, template và kỹ thuật lập trình hướng đối tượng với C++.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="course-item">
+                        <div class="course-icon">.NET</div>
+                        <div class="course-info">
+                            <div class="course-name">Lập trình .NET</div>
+                            <div class="course-description">Phát triển ứng dụng sử dụng .NET Framework, C# và ASP.NET.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="course-item">
+                        <div class="course-icon">WEB</div>
+                        <div class="course-info">
+                            <div class="course-name">Lập trình Web</div>
+                            <div class="course-description">Học về HTML, CSS, JavaScript và các framework để phát triển ứng dụng web.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="course-item">
+                        <div class="course-icon">PM</div>
+                        <div class="course-info">
+                            <div class="course-name">Công cụ phần mềm</div>
+                            <div class="course-description">Học về các công cụ phát triển, quản lý dự án và quy trình phát triển phần mềm.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="projects-section" class="content-section">
+            <div class="profile-section">
+                <h2 class="section-title">Các dự án</h2>
+                <div class="info-section">
+                    <div class="project-item">
+                        <h3 class="project-name">Dự án 1: Website Quản lý Sinh viên</h3>
+                        <p class="project-description">Phát triển một website quản lý thông tin sinh viên sử dụng HTML, CSS, JavaScript và PHP.</p>
+                        <p class="project-tech">Công nghệ sử dụng: HTML, CSS, JavaScript, PHP, MySQL</p>
+                    </div>
+                    <div class="project-item">
+                        <h3 class="project-name">Dự án 2: Ứng dụng Quản lý Công việc</h3>
+                        <p class="project-description">Xây dựng ứng dụng quản lý công việc cá nhân với các tính năng thêm, xóa, sửa công việc.</p>
+                        <p class="project-tech">Công nghệ sử dụng: ReactJS, NodeJS, MongoDB</p>
+                    </div>
+                    <div class="project-item">
+                        <h3 class="project-name">Dự án 3: Hệ thống E-learning</h3>
+                        <p class="project-description">Phát triển hệ thống học tập trực tuyến với các khóa học và bài giảng trực tuyến.</p>
+                        <p class="project-tech">Công nghệ sử dụng: Django, Python, PostgreSQL</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Placeholder for other sections -->
+       
+
+        <section id="about-section" class="content-section">
+            <div class="profile-section">
+                <h2 class="section-title">Giới thiệu</h2>
+                <div class="info-section">
+                    <p style="text-align: center; color: var(--nav-color);">Thông tin giới thiệu đang được cập nhật...</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact-section" class="content-section">
+            <div class="profile-section">
+                <h2 class="section-title">Liên hệ</h2>
+                <div class="info-section">
+                    <div class="contact-item">
+                        <h3 class="contact-name">Phùng Duy Đạt</h3>
+                        <p class="contact-email">Email: dat.phungduy@example.com</p>
+                        <p class="contact-phone">Số điện thoại: 032xxxxxxx</p>
+                        <p class="contact-address">Địa chỉ: Thủ Đức City, TP.HCM</p>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Gửi tin nhắn cho tôi</h3>
+                        <form action="#" method="post">
+                            <div class="form-group">
+                                <label for="name">Họ và tên:</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Tin nhắn:</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="get-button">Gửi</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // JavaScript để xử lý chuyển đổi giữa các tab
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lấy tất cả các liên kết điều hướng
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            // Thêm sự kiện click cho mỗi liên kết
+            navLinks.forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Loại bỏ class active từ tất cả các liên kết
+                    navLinks.forEach(function(navLink) {
+                        navLink.classList.remove('active');
+                    });
+                    
+                    // Thêm class active cho liên kết được click
+                    this.classList.add('active');
+                    
+                    // Lấy section cần hiển thị từ data-section
+                    const sectionToShow = this.getAttribute('data-section');
+                    
+                    // Ẩn tất cả các section
+                    const allSections = document.querySelectorAll('.content-section');
+                    allSections.forEach(function(section) {
+                        section.classList.remove('active');
+                    });
+                    
+                    // Hiển thị section được chọn
+                    document.getElementById(sectionToShow + '-section').classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
