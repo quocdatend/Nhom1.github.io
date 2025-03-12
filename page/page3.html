@@ -1,1 +1,544 @@
-// Ngo Quoc Trong
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #f5f5f5;
+        }
+
+        .profile-container {
+            display: flex;
+            height: 100vh;
+            width: 100%;
+        }
+
+        .sidebar {
+            width: 280px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #3498db;
+            margin-bottom: 15px;
+        }
+
+        .user-name {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .user-title {
+            font-size: 16px;
+            color: #ecf0f1;
+            opacity: 0.8;
+        }
+
+        .menu-items {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .menu-item {
+            padding: 12px 15px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .menu-item:hover {
+            background-color: #34495e;
+        }
+
+        .menu-item.active {
+            background-color: #3498db;
+        }
+
+        .logout {
+            margin-top: auto;
+            padding: 12px 15px;
+            border-radius: 5px;
+            background-color: #e74c3c;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .logout:hover {
+            background-color: #c0392b;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .content-title {
+            font-size: 28px;
+            color: #2c3e50;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 30px;
+            padding: 10px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            padding: 5px 10px;
+            width: 250px;
+            font-size: 16px;
+        }
+
+        /* Phần giới thiệu cá nhân */
+        .about-me {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .about-me-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .about-me-content {
+            line-height: 1.6;
+            color: #34495e;
+        }
+
+        .edit-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .edit-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .personal-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #7f8c8d;
+            width: 100px;
+        }
+
+        .info-value {
+            color: #2c3e50;
+        }
+
+        .skills-container {
+            margin-top: 20px;
+        }
+
+        .skills-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background-color: #3498db;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-title {
+            font-size: 16px;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .recent-activity {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #3498db;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .activity-details {
+            flex-grow: 1;
+        }
+
+        .activity-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .activity-time {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #2c3e50;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Dark theme */
+        body.dark-theme {
+            background-color: #1a1a2e;
+            color: #f0f0f0;
+        }
+
+        body.dark-theme .main-content {
+            background-color: #1a1a2e;
+        }
+
+        body.dark-theme .content-title {
+            color: #f0f0f0;
+        }
+
+        body.dark-theme .stat-card,
+        body.dark-theme .recent-activity,
+        body.dark-theme .search-bar,
+        body.dark-theme .about-me {
+            background-color: #16213e;
+            color: #f0f0f0;
+        }
+
+        body.dark-theme .search-bar input {
+            background-color: #16213e;
+            color: #f0f0f0;
+        }
+
+        body.dark-theme .section-title,
+        body.dark-theme .stat-value,
+        body.dark-theme .about-me-content,
+        body.dark-theme .info-value,
+        body.dark-theme .skills-title {
+            color: #f0f0f0;
+        }
+
+        body.dark-theme .activity-item {
+            border-bottom: 1px solid #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="sidebar">
+            <div class="profile-header">
+                <img src="../images/Ngo Quoc Trong.jpg" alt="User Profile" class="profile-pic">
+                <div class="user-name">Ngô Quốc Trọng</div>
+                <div class="user-title">Frontend Developer</div>
+            </div>
+            <div class="menu-items">
+                <div class="menu-item active">Dashboard</div>
+                <div class="menu-item">Profile</div>
+                <div class="menu-item">Projects</div>
+                <div class="menu-item">Messages</div>
+                <div class="menu-item">Settings</div>
+                <div class="logout">Logout</div>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="content-header">
+                <h1 class="content-title">My Profile</h1>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                </div>
+            </div>
+
+            <!-- Phần giới thiệu cá nhân -->
+            <div class="about-me">
+                <div class="about-me-header">
+                    <h2 class="section-title">About Me</h2>
+                    <button class="edit-btn">Edit Profile</button>
+                </div>
+                <div class="about-me-content">
+                    <p>Tôi là một sinh viên đại học Hutech, ngành CNTT, chuyên ngành Công nghệ phần mềm.</p>
+                    
+                    <p>Code chính là niềm đam mê của tôi.</p>
+                    
+                    <div class="personal-info">
+                        <div class="info-item">
+                            <div class="info-label">Email:</div>
+                            <div class="info-value">quoctrong881@gmail.com</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Phone:</div>
+                            <div class="info-value"> 123-4567</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Location:</div>
+                            <div class="info-value">Thủ Đức</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Website:</div>
+                            <div class="info-value">quoctrong.dev</div>
+                        </div>
+                    </div>
+                    
+                    <div class="skills-container">
+                        <div class="skills-title">Skills</div>
+                        <div class="skills">
+                            <div class="skill-tag">JavaScript</div>
+                            <div class="skill-tag">React</div>
+                            <div class="skill-tag">Vue.js</div>
+                            <div class="skill-tag">Node.js</div>
+                            <div class="skill-tag">HTML5</div>
+                            <div class="skill-tag">CSS3</div>
+                            <div class="skill-tag">UI/UX</div>
+                            <div class="skill-tag">Responsive Design</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-title">Projects Completed</div>
+                    <div class="stat-value">27</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Current Projects</div>
+                    <div class="stat-value">4</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Team Members</div>
+                    <div class="stat-value">12</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Total Hours</div>
+                    <div class="stat-value">842</div>
+                </div>
+            </div>
+            <div class="recent-activity">
+                <h2 class="section-title">Recent Activity</h2>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon">P</div>
+                        <div class="activity-details">
+                            <div class="activity-title">Project "Dashboard Redesign" updated</div>
+                            <div class="activity-time">Today, 10:30 AM</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">M</div>
+                        <div class="activity-details">
+                            <div class="activity-title">New message from Sarah Wilson</div>
+                            <div class="activity-time">Yesterday, 4:15 PM</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">T</div>
+                        <div class="activity-details">
+                            <div class="activity-title">Task "Create API Documentation" completed</div>
+                            <div class="activity-time">March 10, 2025</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">P</div>
+                        <div class="activity-details">
+                            <div class="activity-title">Project "Mobile App" started</div>
+                            <div class="activity-time">March 8, 2025</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="theme-toggle">☀️</div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.querySelector('.theme-toggle');
+        const body = document.body;
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-theme');
+            if (body.classList.contains('dark-theme')) {
+                themeToggle.textContent = '🌙';
+            } else {
+                themeToggle.textContent = '☀️';
+            }
+        });
+
+        // Menu item selection
+        const menuItems = document.querySelectorAll('.menu-item');
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Remove active class from all menu items
+                menuItems.forEach(i => i.classList.remove('active'));
+                // Add active class to clicked item
+                item.classList.add('active');
+                
+                // Change content title based on selected menu
+                const contentTitle = document.querySelector('.content-title');
+                contentTitle.textContent = item.textContent;
+            });
+        });
+
+        // Simulating data loading
+        window.addEventListener('load', () => {
+            const statValues = document.querySelectorAll('.stat-value');
+            statValues.forEach(stat => {
+                const finalValue = parseInt(stat.textContent);
+                let currentValue = 0;
+                const interval = setInterval(() => {
+                    currentValue += Math.ceil(finalValue / 20);
+                    if (currentValue >= finalValue) {
+                        clearInterval(interval);
+                        stat.textContent = finalValue;
+                    } else {
+                        stat.textContent = currentValue;
+                    }
+                }, 50);
+            });
+        });
+        
+        // Edit button functionality
+        const editBtn = document.querySelector('.edit-btn');
+        editBtn.addEventListener('click', () => {
+            alert('Edit profile functionality would go here!');
+        });
+    </script>
+</body>
+</html>
